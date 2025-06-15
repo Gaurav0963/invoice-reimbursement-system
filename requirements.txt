@@ -1,0 +1,14 @@
+python-multipart
+groq
+streamlit
+fastapi
+PyPDF2
+chromadb
+langchain
+langchain-chroma>=0.1.2
+langchain-huggingface
+langchain-community 
+langchain-core
+langgraph
+pdfplumber
+nltk
