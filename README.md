@@ -131,7 +131,7 @@ Example request for querying:
 
 ---
 
-## ⚙️ Technical Details
+## Technical Details
 
 - **Embedding Model**: HuggingFace’s `sentence-transformers/all-mpnet-base-v2` is used to generate semantic embeddings of invoice and policy chunks.
 - **Vector Database**: ChromaDB is used in persistent mode to store vectors locally, supporting filtering by metadata such as employee name, status, reason, and date.
@@ -186,3 +186,8 @@ This ensures the model performs context-aware and faithful decision-making.
 
 ### Challenge: LLM omits required fields (e.g., date) or adds " " inside values of `reason` key.
 **Solutions**: Still looking...
+
+---
+
+## RAG Flow Diagram
+![RAG Flow Diagram](images/graph.png) 
