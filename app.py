@@ -4,8 +4,10 @@ from src.config import Config
 from src.logger import logging as log
 from src.exception import CustomException
 
+
 config = Config()
 API_URL = config.FAST_API_URL
+
 
 st.set_page_config(page_title="Invoice Policy Comparator", layout="centered")
 st.title("Invoice Policy Comparator & Chatbot")
@@ -18,6 +20,7 @@ invoice_zip = st.file_uploader("Upload Invoice ZIP", type="zip")
 policy_pdf = st.file_uploader("Upload Policy PDF", type="pdf")
 
 if st.button('Analyse'):
+    log.info("Analyse button is clicked!!!")
     if invoice_zip and policy_pdf:
         try:
             with st.spinner("Processing uploaded documents..."):

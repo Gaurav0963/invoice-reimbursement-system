@@ -22,10 +22,10 @@ The **Invoice Reimbursement System** is an AI-powered application designed to au
 |------------------------|-------------------------------------|
 | Backend Framework      | FastAPI                             |
 | Frontend Interface     | Streamlit                           |
-| Embeddings             | HuggingFace `all-MiniLM-L6-v2`      |
+| Embeddings             | HuggingFace `all-mpnet-base-v2`     |
 | Vector Store           | ChromaDB (Persistent mode)          |
-| LLM (Text Generation)  | Groq (e.g., LLaMA-2 based)          |
-| Document Parsing       | `PyMuPDF`    |
+| LLM (Text Generation)  | Groq ("llama3-70b-8192")            |
+| Document Parsing       | `PyMuPDF`                           |
 | RAG Framework          | LangGraph                           |
 | UUID Support           | Python’s `uuid` module              |
 | File Format            | PDF (`.pdf`)                        |
@@ -110,13 +110,13 @@ Example request for querying:
 
 ## ⚙️ Technical Details
 
-- **Embedding Model**: HuggingFace’s `sentence-transformers/all-MiniLM-L6-v2` is used to generate semantic embeddings of invoice and policy chunks.
-- **Vector Database**: ChromaDB is used in persistent mode to store vectors locally, supporting filtering by metadata such as employee name, date, and policy type.
-- **LLM**: Groq’s API is integrated to handle reasoning and response generation using LLaMA-2 or similar transformer models.
+- **Embedding Model**: HuggingFace’s `sentence-transformers/all-mpnet-base-v2` is used to generate semantic embeddings of invoice and policy chunks.
+- **Vector Database**: ChromaDB is used in persistent mode to store vectors locally, supporting filtering by metadata such as employee name, status, reason, and date.
+- **LLM**: Groq’s API is integrated to handle reasoning and response generation using `llama3-70b-8192`.
 - **Chunking**: Documents are split into overlapping text chunks using LangChain's `RecursiveCharacterTextSplitter` to optimize semantic retention.
 - **Architecture**:
-  - PDF Loader ➜ Text Splitter ➜ Embeddings ➜ ChromaDB
-  - User Query ➜ Embedding ➜ Similarity Search ➜ Prompt ➜ LLM Response
+  - PDF Loader -> Text Extractor and Cleaner -> Embeddings -> ChromaDB
+  - User Query -> Embedding -> Similarity Search -> Prompt -> LLM Response
 
 ---
 
@@ -160,3 +160,6 @@ This ensures the model performs context-aware and faithful decision-making.
 
 ### Challenge: Extracted text is broken and could be confusing to LLM (esp. Names)
 **Solution**: Used regex to fix the common words and employed a stronger cleaning functions (esp. for invoices) as it was difficult to extract the name correctly.
+
+### Challenge: LLM omits required fields (e.g., date) or adds " " inside values of `reason` key.
+**Solutions**: Still looking...
