@@ -5,6 +5,25 @@
 The **Invoice Reimbursement System** is an AI-powered application designed to automate the comparison of invoice details with reimbursement policies using natural language understanding. Users can upload invoice and policy PDFs, and the system performs intelligent analysis to determine if the invoice complies with the given reimbursement policy. It leverages state-of-the-art language models, vector similarity search, and retrieval-augmented generation (RAG) techniques to generate human-like explanations for compliance decisions using **LangGraph** framework for RAG.
 
 ---
+## Project Structure
+
+invoice-reimbursement-system/
+├── logs/                          # will be created automatcally once the project gets executed
+├── images/                        # contains flow_diagram.png
+├── vectorDB/                      # Vector store containing vector embeddings
+├── src/
+│   ├── run_analysis.py            # contains InvoicePolicyComparator
+│   ├── logger.py                  # logging setup
+│   ├── exception.py               # contains CustomException
+│   ├── prompt.py                  # LLM prompt
+│   ├── rag_agent.py               # RAG setup
+│   ├── utils.py                   # contains get_data_to_embed()
+│   └── vector_store/
+│       └── db.py                  # contains VectorStore
+├── main.py                        # fastAPI Backend
+├── app.py                         # Streamlit Frontend
+├── requirements.txt               # conatins necessary files to be installed for this project
+├── .env                           # To be created by user (e.g., contains GROQ API KEY)
 
 ## Features
 
