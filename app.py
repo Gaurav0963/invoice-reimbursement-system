@@ -46,35 +46,36 @@ st.subheader("Chat with Invoice Bot")
 
 user_query = st.text_input("Ask something like 'Show rejected invoices for Gaurav in March'")
 
-with st.expander("Optional Filters"):
-    employee_name = st.text_input("Employee Name")
-    status = st.selectbox("Reimbursement Status", ["", "Accepted", "Rejected", "Pending"])
-    date = st.text_input("Invoice Date (YYYY-MM-DD)")
+# with st.expander("Optional Filters"):
+#     employee_name = st.text_input("Employee Name")
+#     status = st.selectbox("Reimbursement Status", ["", "Accepted", "Rejected", "Pending"])
+#     date = st.text_input("Invoice Date (YYYY-MM-DD)")
 
 if st.button("Ask"):
     if user_query.strip() == "":
         st.warning("Please enter a question.")
-    else:
-        try:
-            metadata_filter = {}
-            if employee_name:
-                metadata_filter["employee_name"] = employee_name
-            if status:
-                metadata_filter["status"] = status
-            if date:
-                metadata_filter["date"] = date
+    # else:
+    #     try:
+    #         metadata_filter = {}
+    #         if employee_name:
+    #             metadata_filter["employee_name"] = employee_name
+    #         if status:
+    #             metadata_filter["status"] = status
+    #         if date:
+    #             metadata_filter["date"] = date
 
-            response = requests.post(
+    response = requests.post(
                 url=f"{API_URL}/chat/",
                 params={"query": user_query},
-                json={"metadata_filter": metadata_filter}
+                # json={"metadata_filter": metadata_filter}
             )
 
-            if response.status_code == 200:
+    if response.status_code == 200:
                 st.markdown("###Bot's Answer")
-                st.markdown(response.json()["response"])
-            else:
+                # st.markdown(response.json()["response"])
+                st.write(response.text)
+    else:
                 st.error(f"Error: {response.text}")
-        except Exception as e:
-            log.error(f"Chat error: {str(e)}")
-            st.error("An error occurred during the chat interaction.")
+        # except Exception as e:
+        #     log.error(f"Chat error: {str(e)}")
+        #     st.error("An error occurred during the chat interaction.")

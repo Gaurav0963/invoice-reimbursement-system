@@ -9,6 +9,8 @@ __pycache__/
 #local
 Notebook/vectorDB
 *.bkp
+*.png
+*.txt
 
 # Distribution / packaging
 .Python

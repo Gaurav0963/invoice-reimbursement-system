@@ -75,7 +75,7 @@ invoice-reimbursement-system/
    python -m venv venv
    venv\Scripts\activate  # On Linux (Ubuntu 24.04): source venv/bin/activate
    ```
-   ```
+   ```bash
    # (Recomended) create virtual environment using conda
    # Run following commands in terminal
    conda create -n IRSbot python=3.10 -y
